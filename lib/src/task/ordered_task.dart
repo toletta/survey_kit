@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:survey_kit/src/steps/step.dart';
-import 'package:survey_kit/src/task/task.dart';
 import 'package:survey_kit/src/task/identifier/task_identifier.dart';
+import 'package:survey_kit/src/task/task.dart';
 
 part 'ordered_task.g.dart';
 
@@ -21,7 +21,7 @@ class OrderedTask extends Task {
   factory OrderedTask.fromJson(Map<String, dynamic> json) => OrderedTask(
         id: TaskIdentifier.fromJson(json),
         steps: json['steps'] != null
-            ? (json['steps'] as List<Map<String, dynamic>>)
+            ? (json['steps'] as List<dynamic>)
                 .map((step) => Step.fromJson(step))
                 .toList()
             : [],
