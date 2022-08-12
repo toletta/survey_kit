@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:survey_kit/src/answer_format/text_answer_format.dart';
-import 'package:survey_kit/src/views/decoration/input_decoration.dart';
 import 'package:survey_kit/src/result/question/text_question_result.dart';
 import 'package:survey_kit/src/steps/predefined_steps/question_step.dart';
 import 'package:survey_kit/src/views/widget/step_view.dart';
@@ -71,6 +70,7 @@ class _TextAnswerViewState extends State<TextAnswerView> {
           : widget.questionStep.content,
       isValid: _isValid || widget.questionStep.isOptional,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding:
@@ -82,17 +82,27 @@ class _TextAnswerViewState extends State<TextAnswerView> {
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50.0,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
-              decoration: textFieldInputDecoration(
-                hint: _textAnswerFormat.hint,
+              maxLines: 5,
+              maxLength: 1024,
+              decoration: InputDecoration(
+                hintText: _textAnswerFormat.hint,
+                contentPadding: const EdgeInsets.all(14.0),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                ),
+                alignLabelWithHint: true,
               ),
               controller: _controller,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
               onChanged: (String text) {
                 _checkValidation(text);
               },
+              keyboardType: TextInputType.text,
+              keyboardAppearance: Brightness.light,
             ),
           ),
         ],

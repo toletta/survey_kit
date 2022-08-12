@@ -28,7 +28,7 @@ class InstructionView extends StatelessWidget {
         child: Text(
           instructionStep.text,
           style: Theme.of(context).textTheme.bodyText2,
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.left,
         ),
       ),
     );

@@ -13,6 +13,9 @@ class CompletionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final _circleSize = width * 0.25;
+    final _iconSize = _circleSize - width * 0.07;
     return StepView(
       step: completionStep,
       resultFunction: () => CompletionStepResult(
@@ -20,34 +23,57 @@ class CompletionView extends StatelessWidget {
         _startDate,
         DateTime.now(),
       ),
-      title: Text(completionStep.title,
-          style: Theme.of(context).textTheme.headline2),
+      title: Column(
+        children: [
+          Container(
+            width: _circleSize,
+            height: _circleSize,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Icon(
+                Icons.check,
+                size: _iconSize,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            completionStep.title,
+            style: Theme.of(context).textTheme.headline2,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 64.0),
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
         child: Column(
           children: [
             Text(
               completionStep.text,
               style: Theme.of(context).textTheme.bodyText2,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 32.0),
-              child: Container(
-                width: 150.0,
-                height: 150.0,
-                child: assetPath.isNotEmpty
-                ? Lottie.asset(
-                  assetPath,
-                  repeat: false,
-                )
-                : Lottie.asset(
-                  'assets/fancy_checkmark.json',
-                  package: 'survey_kit',
-                  repeat: false,
-                ),
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: 32.0),
+            //   child: Container(
+            //     width: 150.0,
+            //     height: 150.0,
+            //     child: assetPath.isNotEmpty
+            //         ? Lottie.asset(
+            //             assetPath,
+            //             repeat: false,
+            //           )
+            //         : Lottie.asset(
+            //             'assets/fancy_checkmark.json',
+            //             package: 'survey_kit',
+            //             repeat: false,
+            //           ),
+            //   ),
+            // )
           ],
         ),
       ),

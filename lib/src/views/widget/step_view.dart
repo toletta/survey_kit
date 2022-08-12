@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:survey_kit/src/controller/survey_controller.dart';
 import 'package:survey_kit/src/result/question_result.dart';
 import 'package:survey_kit/src/steps/step.dart' as surveystep;
-import 'package:provider/provider.dart';
 
 class StepView extends StatelessWidget {
   final surveystep.Step step;
@@ -33,39 +33,58 @@ class StepView extends StatelessWidget {
       child: Container(
         color: Theme.of(context).backgroundColor,
         child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: title,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 32.0),
+                        child: title,
+                      ),
+                      child,
+                    ],
+                  ),
                 ),
-                child,
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: OutlinedButton(
-                    onPressed: isValid || step.isOptional
-                        ? () =>
-                            surveyController.nextStep(context, resultFunction)
-                        : null,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 32.0),
+                child: OutlinedButton(
+                  onPressed: isValid || step.isOptional
+                      ? () => surveyController.nextStep(context, resultFunction)
+                      : null,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.85,
+                    alignment: Alignment.center,
                     child: Text(
                       step.buttonText?.toUpperCase() ??
                           context
                               .read<Map<String, String>?>()?['next']
                               ?.toUpperCase() ??
                           'Next',
-                      style: TextStyle(
-                        color: isValid
-                            ? Theme.of(context).primaryColor
-                            : Colors.grey,
-                      ),
+                      style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFFfafafa),
+                          ),
                     ),
                   ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith(
+                      (Set<MaterialState> state) => Theme.of(context)
+                          .primaryColor
+                          .withOpacity(state.contains(MaterialState.disabled)
+                              ? 0.5
+                              : 1.0),
+                    ),
+                    side: MaterialStateProperty.all(BorderSide.none),
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

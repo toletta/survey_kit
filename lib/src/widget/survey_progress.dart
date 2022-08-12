@@ -18,6 +18,9 @@ class _SurveyProgressState extends State<SurveyProgress> {
         context.read<SurveyProgressConfiguration>();
     return BlocBuilder<SurveyPresenter, SurveyState>(builder: (context, state) {
       if (state is PresentingSurveyState) {
+        //Exclude start and end step
+        final stepCount = state.stepCount - 2;
+        final currentStep = state.currentStepIndex;
         return Padding(
           padding: progressbarConfiguration.padding,
           child: Column(
@@ -27,9 +30,9 @@ class _SurveyProgressState extends State<SurveyProgress> {
               progressbarConfiguration.showLabel &&
                       progressbarConfiguration.label != null
                   ? progressbarConfiguration.label!(
-                      state.currentStepIndex.toString(),
-                      state.stepCount.toString())
+                      currentStep.toString(), stepCount.toString())
                   : SizedBox.shrink(),
+              SizedBox(height: 4.0),
               ClipRRect(
                 borderRadius: progressbarConfiguration.borderRadius ??
                     BorderRadius.circular(14.0),
@@ -45,9 +48,7 @@ class _SurveyProgressState extends State<SurveyProgress> {
                         return AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.linear,
-                          width: (state.currentStepIndex + 1) /
-                              state.stepCount *
-                              constraints.maxWidth,
+                          width: currentStep / stepCount * constraints.maxWidth,
                           height: progressbarConfiguration.height,
                           color:
                               progressbarConfiguration.valueProgressbarColor ??
