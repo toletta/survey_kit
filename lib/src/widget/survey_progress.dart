@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:survey_kit/src/presenter/survey_presenter.dart';
 import 'package:survey_kit/src/presenter/survey_state.dart';
+import 'package:survey_kit/src/steps/predefined_steps/question_step.dart';
 import 'package:survey_kit/src/widget/survey_progress_configuration.dart';
 
 class SurveyProgress extends StatefulWidget {
@@ -19,8 +20,10 @@ class _SurveyProgressState extends State<SurveyProgress> {
     return BlocBuilder<SurveyPresenter, SurveyState>(builder: (context, state) {
       if (state is PresentingSurveyState) {
         //Exclude start and end step
-        final stepCount = state.stepCount - 2;
-        final currentStep = state.currentStepIndex;
+        final questionSteps =
+            state.steps.where((e) => e is QuestionStep).toList();
+        final stepCount = questionSteps.length;
+        final currentStep = questionSteps.indexOf(state.currentStep) + 1;
         return Padding(
           padding: progressbarConfiguration.padding,
           child: Column(
