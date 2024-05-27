@@ -30,7 +30,7 @@ class StepView extends StatelessWidget {
 
   Widget _content(SurveyController surveyController, BuildContext context) {
     return Container(
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).colorScheme.background,
       constraints: BoxConstraints.expand(),
       padding: const EdgeInsets.symmetric(vertical: 32.0),
       alignment: Alignment.center,
@@ -72,7 +72,8 @@ class StepView extends StatelessWidget {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.resolveWith(
                 (Set<MaterialState> state) => Theme.of(context)
-                    .primaryColor
+                    .colorScheme
+                    .primary
                     .withOpacity(
                         state.contains(MaterialState.disabled) ? 0.5 : 1.0),
               ),
