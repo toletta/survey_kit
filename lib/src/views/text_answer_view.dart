@@ -64,7 +64,7 @@ class _TextAnswerViewState extends State<TextAnswerView> {
       title: widget.questionStep.title.isNotEmpty
           ? Text(
               widget.questionStep.title,
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.displayMedium,
               textAlign: TextAlign.center,
             )
           : widget.questionStep.content,
@@ -77,7 +77,7 @@ class _TextAnswerViewState extends State<TextAnswerView> {
                 const EdgeInsets.only(bottom: 32.0, left: 14.0, right: 14.0),
             child: Text(
               widget.questionStep.text,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
           ),

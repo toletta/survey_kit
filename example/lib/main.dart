@@ -46,9 +46,9 @@ class _MyAppState extends State<MyApp> {
                         primarySwatch: Colors.cyan,
                       ).copyWith(
                         onPrimary: Colors.white,
+                        surface: Colors.white,
                       ),
                       primaryColor: Colors.cyan,
-                      backgroundColor: Colors.white,
                       appBarTheme: const AppBarTheme(
                         color: Colors.white,
                         iconTheme: IconThemeData(
@@ -96,14 +96,14 @@ class _MyAppState extends State<MyApp> {
                               if (state.contains(MaterialState.disabled)) {
                                 return Theme.of(context)
                                     .textTheme
-                                    .button
+                                    .labelLarge
                                     ?.copyWith(
                                       color: Colors.grey,
                                     );
                               }
                               return Theme.of(context)
                                   .textTheme
-                                  .button
+                                  .labelLarge
                                   ?.copyWith(
                                     color: Colors.cyan,
                                   );
@@ -114,26 +114,26 @@ class _MyAppState extends State<MyApp> {
                       textButtonTheme: TextButtonThemeData(
                         style: ButtonStyle(
                           textStyle: MaterialStateProperty.all(
-                            Theme.of(context).textTheme.button?.copyWith(
+                            Theme.of(context).textTheme.labelLarge?.copyWith(
                                   color: Colors.cyan,
                                 ),
                           ),
                         ),
                       ),
                       textTheme: TextTheme(
-                        headline2: TextStyle(
+                        displayMedium: TextStyle(
                           fontSize: 28.0,
                           color: Colors.black,
                         ),
-                        headline5: TextStyle(
+                        headlineSmall: TextStyle(
                           fontSize: 24.0,
                           color: Colors.black,
                         ),
-                        bodyText2: TextStyle(
+                        bodyMedium: TextStyle(
                           fontSize: 18.0,
                           color: Colors.black,
                         ),
-                        subtitle1: TextStyle(
+                        titleMedium: TextStyle(
                           fontSize: 18.0,
                           color: Colors.black,
                         ),

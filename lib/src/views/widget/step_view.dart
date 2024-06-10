@@ -63,7 +63,7 @@ class StepView extends StatelessWidget {
                         .read<Map<String, String>?>()?['next']
                         ?.toUpperCase() ??
                     'Next',
-                style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFFfafafa),
                     ),

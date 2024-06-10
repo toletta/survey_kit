@@ -43,7 +43,7 @@ class CompletionView extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             completionStep.title,
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
             textAlign: TextAlign.center,
           ),
         ],
@@ -54,7 +54,7 @@ class CompletionView extends StatelessWidget {
           children: [
             Text(
               completionStep.text,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.left,
             ),
             // Padding(
